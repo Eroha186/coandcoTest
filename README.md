@@ -5,7 +5,7 @@
 
 ## Установка: 
 <br>
-1. ``git clode https://github.com/Eroha186/magneexTest``
+1. ``git clode https://github.com/Eroha186/coandcoTest``
 2. ``composer install``
 3. ``cp .env.example .env`` - делаем копию файла конфигурации для окружения
 4. В файле ``.env`` настраиваем доступ к базе данных

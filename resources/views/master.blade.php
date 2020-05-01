@@ -9,11 +9,7 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     </head>
     <body>
-        <div class="container pt-4">
-            @include('blocks.search')
-
-            @include('blocks.table')
-        </div>
+        @yield('content')
         <script src="{{ asset("js/app.js") }}"></script>
     </body>
 </html>

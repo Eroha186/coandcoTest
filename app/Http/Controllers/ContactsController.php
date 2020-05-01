@@ -52,9 +52,9 @@ class ContactsController extends Controller
     {
         $search = $request->get('search');
         return Contact::where('name', 'like', "%${search}%")
-            ->whereOr('surname', 'like', "%${search}%")
-            ->whereOr('middle_name', 'like', "%${search}%")
-            ->whereOr('phone', 'like', "%${search}%")
+            ->orWhere('surname', 'like', "%${search}%")
+            ->orWhere('middle_name', 'like', "%${search}%")
+            ->orWhere('phone', 'like', "%${search}%")
             ->get();
     }
 }

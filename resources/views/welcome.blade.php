@@ -62,6 +62,8 @@
                 margin-bottom: 30px;
             }
         </style>
+
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -96,5 +98,8 @@
                 </div>
             </div>
         </div>
+    <div class="container">
+        sadfsadfsa
+    </div>
     </body>
 </html>

@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/', 'ContactsController@show');
+
+Route::post('/search', 'ContactsController@search');
+
+Route::resource('contacts', 'ContactsController')->except(['index', 'create', 'show', 'edit']);

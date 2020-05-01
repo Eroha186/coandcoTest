@@ -7,24 +7,9 @@ use Illuminate\Http\Request;
 
 class ContactsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function show()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('main', ['contacts' => Contact::all()]);
     }
 
     /**
@@ -35,29 +20,7 @@ class ContactsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Contact $contact)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Contact $contact)
-    {
-        //
+        return Contact::create($request->all());
     }
 
     /**
@@ -65,21 +28,33 @@ class ContactsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        $contact->update($request->all());
+        return response('ok',200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Contact  $contact
-     * @return \Illuminate\Http\Response
+     * @return Contact[]|\Illuminate\Database\Eloquent\Collection
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact->delete();
+        return Contact::all();
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        return Contact::where('name', 'like', "%${search}%")
+            ->whereOr('surname', 'like', "%${search}%")
+            ->whereOr('middle_name', 'like', "%${search}%")
+            ->whereOr('phone', 'like', "%${search}%")
+            ->get();
     }
 }
